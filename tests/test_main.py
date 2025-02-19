@@ -22,12 +22,10 @@ def test_integration_json():
     assert isinstance(json_data["data"]["is_active"], bool)
     assert isinstance(json_data["data"]["output"], list)
 
-@patch("requests.get")  # ✅ Correctly patch `requests.get`
+@patch("requests.get")
 def test_exercise_endpoint(mock_get):
     """Mock API call for /exe and test response"""
     mock_response = [{"name": "Squat", "muscle": "glutes", "equipment": "body only"}]
-    
-    # Configure the mock to return the desired response
     mock_get.return_value = MockResponse(mock_response, 200)
 
     response = client.get("/exe")
@@ -40,7 +38,7 @@ class MockResponse:
         self._status_code = status_code
 
     def json(self):
-        return self.json_data  # Ensure this returns a list
+        return self.json_data 
 
     @property
     def status_code(self):

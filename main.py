@@ -2,8 +2,9 @@ import requests
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.router import api_router
+import os
 
-api_key = "zuq/hiBZxcaGPHYblr30kw==klbwkoKYvSMnDUqi"
+api_key = os.getenv("api_key")
 api_url = "https://api.api-ninjas.com/v1/exercises?muscle="
 muscles = ["glutes", "abs", "chest", "arms", "leg", "triceps",
            "abdominals", "abductors", "adductors", "biceps",
