@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.router import api_router
 import os
 
-api_key = os.getenv("api_key")
+api_key = "zuq/hiBZxcaGPHYblr30kw==klbwkoKYvSMnDUqi"
 if not api_key:
     raise ValueError("API Key is missing. Set the 'api_key' environment variable.")
 
