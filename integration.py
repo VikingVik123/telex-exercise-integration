@@ -8,7 +8,7 @@ int_json = {
       "app_name": "Daily WorkOut",
       "app_description": "Fetches workout data from an exercise API and sends it to Slack via Telex.",
       "app_logo": "https://images.app.goo.gl/XTLJhuQC53HMV6HY8",
-      "app_url": "http://3.85.32.124/exe",
+      "app_url": "https://3.85.32.124/",
       "background_color": "#000000"
     },
     "is_active": True,
@@ -17,7 +17,7 @@ int_json = {
     "key_features": [
       "Fetches workout data from an exercise API."
     ],
-    "website": "http://3.85.32.124/exe",
+    "website": "https://3.85.32.124/exe",
     "author": "Victor",
     "settings": [
       {
