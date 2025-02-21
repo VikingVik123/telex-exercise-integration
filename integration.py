@@ -7,7 +7,7 @@ int_json = {
     "descriptions": {
       "app_name": "Daily WorkOut",
       "app_description": "Fetches workout data from an exercise API and sends it to Slack via Telex.",
-      "app_logo": "your_app_logo",
+      "app_logo": "https://images.app.goo.gl/XTLJhuQC53HMV6HY8",
       "app_url": "http://3.85.32.124",
       "background_color": "#000000"
     },
