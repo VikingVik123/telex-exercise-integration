@@ -24,14 +24,14 @@ int_json = {
         "label": "slack-channel",
         "type": "text",
         "required": True,
-        "default": "#ExerciseAlert"
+        "default": "#all-telex"
       },
       {
         "label": "time interval",
         "type": "dropdown",
         "required": True,
         "default": "* * * * *",
-        "options": ["15", "30", "45", "60", "120"]
+        "options": ["1", "2", "5", "24", "15", "30", "45", "60", "120"]
       }
     ],
     "target_url": "https://hooks.slack.com/services/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"
