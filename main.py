@@ -63,13 +63,14 @@ async def get_exercises():
                 "event_name": "exercise_update",
                 "username": "FitnessBot",
                 "status": "success",
-                "message": f"New exercise retrieved: {first_exercise.get('name', 'Unknown'),
-                                                      first_exercise.get('type', 'unknown'),
-                                                      first_exercise.get('muscle', 'unknown'),
-                                                      first_exercise.get('equipment', 'unknown'),
-                                                      first_exercise.get('difficulty', 'unknown'),
-                                                      first_exercise.get('instructions', 'unknown')}",
-            }
+                "message": "New exercise retrieved: Name: {name}, Type: {type}, Muscle: {muscle}, Equipment: {equipment}, Difficulty: {difficulty}, Instructions: {instructions}".format(
+                    name=first_exercise.get('name', 'Unknown'),
+                    type=first_exercise.get('type', 'unknown'),
+                    muscle=first_exercise.get('muscle', 'unknown'),
+                    equipment=first_exercise.get('equipment', 'unknown'),
+                    difficulty=first_exercise.get('difficulty', 'unknown'),
+                    instructions=first_exercise.get('instructions', 'unknown')
+            )}
 
             webhook_response = requests.post(telex_webhook_url, json=telex_payload)
 
