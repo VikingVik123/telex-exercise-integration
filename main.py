@@ -18,7 +18,7 @@ if not telex_webhook_url:
 
 api_url = "https://api.api-ninjas.com/v1/exercises?muscle="
 muscles = [
-    "glutes", "abs", "chest", "arms", "leg", "triceps",
+    "glutes", "chest", "arms", "leg", "triceps",
     "abdominals", "abductors", "adductors", "biceps",
     "calves", "forearms", "hamstrings", "lats",
     "lower_back", "middle_back", "neck", "quadriceps", "traps"
@@ -38,7 +38,6 @@ app.add_middleware(
 
 app.include_router(api_router)
 
-
 @app.get("/exe")
 async def get_exercises():
     global muscle_index
@@ -54,24 +53,34 @@ async def get_exercises():
 
         if response.status_code == 200:
             data = response.json()
-            exercise_data = data[0] if data else {"message": "No exercises found for this muscle group."}
+
+            if not data:
+                return {"error": "No exercises found for this muscle group."}
+
+            first_exercise = data[0]
+
             telex_payload = {
                 "event_name": "exercise_update",
                 "username": "FitnessBot",
                 "status": "success",
-                "message": f"New exercise retrieved: {exercise_data.get('name', 'Unknown')}",
+                "message": f"New exercise retrieved: {first_exercise.get('name', 'Unknown'),
+                                                      first_exercise.get('type', 'unknown'),
+                                                      first_exercise.get('muscle', 'unknown'),
+                                                      first_exercise.get('equipment', 'unknown'),
+                                                      first_exercise.get('difficulty', 'unknown'),
+                                                      first_exercise.get('instructions', 'unknown')}",
             }
 
             webhook_response = requests.post(telex_webhook_url, json=telex_payload)
 
             if webhook_response.status_code == 200:
                 return {
-                    "exercise": exercise_data,
+                    "exercise": first_exercise,
                     "webhook_status": "Successfully sent to Telex",
                 }
             else:
                 return {
-                    "exercise": exercise_data,
+                    "exercise": first_exercise,
                     "webhook_status": f"Failed to send to Telex: {webhook_response.status_code}",
                     "webhook_response": webhook_response.text,
                 }
@@ -83,7 +92,7 @@ async def get_exercises():
             
     except requests.RequestException as e:
         return {"error": "Request failed", "message": str(e)}
-    
+
 @app.get("/integration.json")
 async def get_integration():
     return int_json
