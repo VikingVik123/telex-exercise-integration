@@ -84,6 +84,6 @@ async def get_exercises():
     except requests.RequestException as e:
         return {"error": "Request failed", "message": str(e)}
     
-@app.get("/integration")
+@app.get("/integration.json")
 async def get_integration():
     return int_json
