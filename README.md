@@ -79,7 +79,8 @@ If the API key is missing, an error is raised.
 
 If the Telex webhook URL is missing, an error is raised.
 
+If the API call fails, appropriate error messages are returned.
+
 ### Testing
 call the /exe endpoint on a browser or using curl with GET method
 
-If the API call fails, appropriate error messages are returned.
